@@ -12,25 +12,6 @@ Given an integer, convert it to a roman numeral.
 '''
 class Solution:
     def intToRoman(self, num: int) -> str:
-        def romanChange(var, num):
-            v1, v2, v3 = var[0], var[1], var[2]
-            if var[2] is not None:
-                result = {0: "",
-                          1: v1,
-                          2: v1 * 2,
-                          3: v1 * 3,
-                          4: v1 + v2,
-                          5: v2,
-                          6: v2 + v1,
-                          7: v2 + v1 * 2,
-                          8: v2 + v1 * 3,
-                          9: v1 + v3}
-            else:
-                result = {0: "",
-                          1: v1,
-                          2: v1 * 2,
-                          3: v1 * 3}
-            return result[num]
         pum = {1: ["I", "V", "X"], 2: ["X", "L", "C"], 3: ["C", "D", "M"], 4: ["M", None, None]}
         val = num
         count = 0
@@ -39,5 +20,25 @@ class Solution:
             count += 1
         result = ""
         for i in range(count, 0 , -1):
-            result += romanChange(pum[i], int(str(val)[-i]))
+            result += self.romanChange(pum[i], int(str(val)[-i]))
         return result
+
+    def romanChange(self, var, num):
+        v1, v2, v3 = var[0], var[1], var[2]
+        if var[2] is not None:
+            result = {0: "",
+                      1: v1,
+                      2: v1 * 2,
+                      3: v1 * 3,
+                      4: v1 + v2,
+                      5: v2,
+                      6: v2 + v1,
+                      7: v2 + v1 * 2,
+                      8: v2 + v1 * 3,
+                      9: v1 + v3}
+        else:
+            result = {0: "",
+                      1: v1,
+                      2: v1 * 2,
+                      3: v1 * 3}
+        return result[num]
