@@ -29,7 +29,7 @@ class Solution:
         end=len(nums)-1
         # until both comes not equal
         while start<=end:
-            mid=(start+end)>>1      # Calculating mid point
+            mid=(start+end) // 2      # Calculating mid point
             # checking if mid is target then return  index
             if nums[mid]==target:
                 return mid
