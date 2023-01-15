@@ -38,12 +38,12 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 '''
 class Solution:
     def romanToInt(self, s: str) -> int:
-        roman = {"I": 1,
-                 "V": 5,
-                 "X": 10,
-                 "L": 50,
-                 "C": 100,
-                 "D": 500,
-                 "M": 1000}
-        s = s.replace("IV", "IIII").replace("IX", "VIIII").replace("XL", "XXXX").replace("XC", "LXXXX").replace("CD", "CCCC").replace("CM", "DCCCC")
-        return sum(list(map(lambda x: roman[x], s)))
+        mapping = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+        result = 0
+        for i in range(len(s)-1):
+            if mapping[s[i]] < mapping[s[i+1]]:
+                result -= mapping[s[i]]
+            else:
+                result += mapping[s[i]]
+            print(result)
+        return result + mapping[s[-1]]
