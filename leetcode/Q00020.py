@@ -39,3 +39,36 @@ class Solution:
             return True
         else:
             return False
+## my solution
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        queue = []
+        for i in s:
+            # left
+            if i == "(":
+                queue.append(")")
+            elif i == "[":
+                queue.append("]")
+            elif i == "{":
+                queue.append("}")
+            # right
+            if i == ")":
+                if queue and queue[-1] == ")":
+                    queue.pop()
+                else:
+                    return False
+            elif i == "]":
+                if queue and queue[-1] == "]":
+                    queue.pop()
+                else:
+                    return False
+            elif i == "}":
+                if queue and queue[-1] == "}":
+                    queue.pop()
+                else:
+                    return False
+        if queue:
+            return False
+        else:
+            return True
