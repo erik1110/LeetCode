@@ -48,3 +48,27 @@ class Solution:
                     while nums[l] == nums[l-1] and l < r:
                         l += 1
         return res
+
+## solution 2
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        res = []
+        seen = set()
+        for i in range(len(nums)-2):
+            l = i+1
+            r = len(nums) - 1
+            while l < r :
+                if nums[i] + nums[l] + nums[r] == 0:
+                    t = (nums[i], nums[l], nums[r])
+                    if t not in seen:
+                        res.append([nums[i], nums[l], nums[r]])
+                        seen.add(t)
+                    r-=1
+                    l+=1
+                elif nums[i] + nums[l] + nums[r] > 0:
+                    r-=1
+                else:
+                    l+=1
+        return res
