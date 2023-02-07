@@ -24,21 +24,21 @@ Output: false
 '''
 class Solution:
     def isValid(self, s: str) -> bool:
-        open_tup = tuple('({[')
-        close_tup = tuple(')}]')
+        stack = []
+        open_tup = tuple("([{")
+        close_tup = tuple(")]}")
         map = dict(zip(open_tup, close_tup))
-        queue = []
-
         for i in s:
             if i in open_tup:
-                queue.append(map[i])
+                stack.append(map[i])
             elif i in close_tup:
-                if not queue or i != queue.pop():
+                if not stack or i!=stack.pop():
                     return False
-        if not queue:
-            return True
-        else:
+
+        if stack:
             return False
+        return True
+
 ## my solution
 
 class Solution:
