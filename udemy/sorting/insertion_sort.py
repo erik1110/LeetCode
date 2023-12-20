@@ -10,7 +10,6 @@ def insertion_sort(n):
         # 最後再將 key 補在應該插入的位置
         n[j+1] = key
 
-# 测试插入排序
 arr = [10, 11, 13, 12, 6]
 insertion_sort(arr)
 print(arr)
