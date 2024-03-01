@@ -53,6 +53,18 @@ class LinkedList:
             self.length -= 1
             return temp
         
+    def unshift(self, value):
+        if not self.head:
+            new_node = Node(value)
+            self.head = new_node
+        else:
+            new_node = Node(value)
+            temp = self.head
+            self.head = new_node
+            self.head.next = temp
+        self.length += 1
+            
+        
     def print_list(self):
         current_node = self.head
         while current_node:
@@ -67,4 +79,5 @@ if __name__ == "__main__":
     myLinkedList.push("Ann")
     myLinkedList.push("Emily")
     myLinkedList.shift()
+    myLinkedList.unshift("Erik")
     myLinkedList.print_list()
