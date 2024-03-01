@@ -20,7 +20,7 @@ class LinkedList:
                 current_node = current_node.next
             current_node.next = new_node
         self.length += 1
-
+    
     def pop(self):
         if not self.head:
             return
@@ -38,7 +38,20 @@ class LinkedList:
             prev_node.next = None
             self.length -= 1
             return current_node
-
+        
+    def shift(self):
+        if not self.head:
+            return
+        elif self.length == 1:
+            temp = self.head
+            self.head = None
+            self.length = 0
+            return temp
+        else:
+            temp = self.head
+            self.head = self.head.next
+            self.length -= 1
+            return temp
         
     def print_list(self):
         current_node = self.head
@@ -53,6 +66,5 @@ if __name__ == "__main__":
     myLinkedList.push("Mike")
     myLinkedList.push("Ann")
     myLinkedList.push("Emily")
-    myLinkedList.pop()
-    myLinkedList.pop()
+    myLinkedList.shift()
     myLinkedList.print_list()
