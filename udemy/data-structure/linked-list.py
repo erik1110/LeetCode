@@ -1,13 +1,15 @@
 class Node:
+
     def __init__(self, value):
         self.value = value
         self.next = None
         
 class LinkedList:
+
     def __init__(self):
         self.head = None
         self.length = 0
-        
+
     def push(self, value):
         new_node = Node(value)
         if not self.head:
@@ -20,7 +22,7 @@ class LinkedList:
                 current_node = current_node.next
             current_node.next = new_node
         self.length += 1
-    
+
     def pop(self):
         if not self.head:
             return
@@ -38,7 +40,7 @@ class LinkedList:
             prev_node.next = None
             self.length -= 1
             return current_node
-        
+ 
     def shift(self):
         if not self.head:
             return
@@ -52,7 +54,7 @@ class LinkedList:
             self.head = self.head.next
             self.length -= 1
             return temp
-        
+
     def unshift(self, value):
         if not self.head:
             new_node = Node(value)
@@ -63,21 +65,34 @@ class LinkedList:
             self.head = new_node
             self.head.next = temp
         self.length += 1
-            
-        
+
+    def insertAt(self, index, value):
+        if index > self.length or index < 0 :
+            raise Exception("Index 錯誤")
+        elif index == 0:
+            self.unshift(value)
+        elif index == self.length:
+            self.push(value)
+        else:
+            current_node = self.head
+            new_node = Node(value)
+            for i in range(index-1):
+                current_node = current_node.next
+            new_node.next = current_node.next
+            current_node.next = new_node
+            self.length += 1
+
     def print_list(self):
         current_node = self.head
         while current_node:
             print(current_node.value, end=" ")
             current_node = current_node.next
         print()
-        
-        
+
 if __name__ == "__main__":
     myLinkedList = LinkedList()
     myLinkedList.push("Mike")
     myLinkedList.push("Ann")
     myLinkedList.push("Emily")
-    myLinkedList.shift()
-    myLinkedList.unshift("Erik")
+    myLinkedList.insertAt(3, "Erik")
     myLinkedList.print_list()
