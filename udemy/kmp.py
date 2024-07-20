@@ -1,3 +1,5 @@
+from lps import lps
+
 def kmp(str1, str2):
     '''
     str1: 被搜尋
