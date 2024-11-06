@@ -18,28 +18,41 @@ jobs:
 
       - name: Count files and update README
         run: |
-          # Install tree if not present (optional, for checking structure)
-          sudo apt-get install -y tree
-          echo "Repository structure:"
-          tree
-
           # Initialize README content
-          echo "# Question Summary" > README.md
+          echo "# Leetcode Summart" > README.md
           echo "" >> README.md
 
           # Function to count files in each directory
           count_files() {
             local dir_path="$1"
+            local dir_name="$2"
+            local indent="$3"
             local count=$(find "$dir_path" -type f -name "*.py" | wc -l)
-            echo "$dir_path 刷了 $count 題" >> README.md
+            if [ "$count" -gt 0 ]; then
+              echo "$indent- $dir_name 刷了 $count 題" >> README.md
+            fi
           }
 
-          # Loop through all directories and count files
-          for dir in $(find . -type d -not -path "./.git*"); do
-            if [ "$(find "$dir" -type f -name "*.py" | wc -l)" -gt 0 ]; then
-              dir_name=$(echo "$dir" | sed 's|^\./||' | sed 's|/| - |g')
-              count_files "$dir"
-            fi
+          # Recursively count files in directories and subdirectories
+          process_directory() {
+            local parent_path="$1"
+            local parent_name="$2"
+            local indent="$3"
+            
+            count_files "$parent_path" "$parent_name" "$indent"
+            
+            for subdir in "$parent_path"/*/; do
+              if [ -d "$subdir" ]; then
+                local subdir_name=$(basename "$subdir")
+                process_directory "$subdir" "$parent_name/$subdir_name" "  $indent"
+              fi
+            done
+          }
+
+          # Process top-level directories
+          for dir in $(find . -mindepth 1 -maxdepth 1 -type d -not -path "./.git*"); do
+            dir_name=$(basename "$dir")
+            process_directory "$dir" "$dir_name" ""
           done
 
       - name: Commit and push README update
