@@ -1,4 +1,4 @@
-# Leetcode Summart
+# Leetcode Summary
 
 - algo 刷了 6 題
 - udemy 刷了 13 題
@@ -6,3 +6,5 @@
   - udemy/sorting 刷了 6 題
 - leetcode_uk 刷了 6 題
 - leetcode 刷了 75 題
+
+總共刷了 107 題
