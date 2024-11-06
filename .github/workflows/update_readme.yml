@@ -1,0 +1,32 @@
+name: Update README
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Count files and update README
+        run: |
+
+          output=""
+
+          # 找出每個目錄底下的 Python 檔案數量
+          for dir in $(find . -type d); do
+            count=$(find "$dir" -maxdepth 1 -name '*.py' | wc -l)
+            if [ "$count" -gt 0 ]; then
+              # 去掉 "./" 開頭並將其格式化為 '路徑 刷了 X 題'
+              clean_dir=${dir#./}
+              output+="$clean_dir 刷了 $count 題\n"
+            fi
+          done
+
+          # 更新 README.md
+          echo -e "$output" > README.md
