@@ -4,29 +4,50 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out the repository
+      - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Count files and update README
         run: |
+          # Install tree if not present (optional, for checking structure)
+          sudo apt-get install -y tree
+          echo "Repository structure:"
+          tree
 
-          output=""
+          # Initialize README content
+          echo "# Question Summary" > README.md
+          echo "" >> README.md
 
-          # 找出每個目錄底下的 Python 檔案數量
-          for dir in $(find . -type d); do
-            count=$(find "$dir" -maxdepth 1 -name '*.py' | wc -l)
-            if [ "$count" -gt 0 ]; then
-              # 去掉 "./" 開頭並將其格式化為 '路徑 刷了 X 題'
-              clean_dir=${dir#./}
-              output+="$clean_dir 刷了 $count 題\n"
+          # Function to count files in each directory
+          count_files() {
+            local dir_path="$1"
+            local count=$(find "$dir_path" -type f -name "*.py" | wc -l)
+            echo "$dir_path 刷了 $count 題" >> README.md
+          }
+
+          # Loop through all directories and count files
+          for dir in $(find . -type d -not -path "./.git*"); do
+            if [ "$(find "$dir" -type f -name "*.py" | wc -l)" -gt 0 ]; then
+              dir_name=$(echo "$dir" | sed 's|^\./||' | sed 's|/| - |g')
+              count_files "$dir"
             fi
           done
 
-          # 更新 README.md
-          echo -e "$output" > README.md
+      - name: Commit and push README update
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Update README with question counts"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
