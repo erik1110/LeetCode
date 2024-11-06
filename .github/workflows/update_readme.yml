@@ -19,8 +19,11 @@ jobs:
       - name: Count files and update README
         run: |
           # Initialize README content
-          echo "# Leetcode Summart" > README.md
+          echo "# Leetcode Summary" > README.md
           echo "" >> README.md
+
+          # Initialize total count
+          total_count=0
 
           # Function to count files in each directory
           count_files() {
@@ -30,6 +33,7 @@ jobs:
             local count=$(find "$dir_path" -type f -name "*.py" | wc -l)
             if [ "$count" -gt 0 ]; then
               echo "$indent- $dir_name 刷了 $count 題" >> README.md
+              total_count=$((total_count + count))
             fi
           }
 
@@ -54,6 +58,10 @@ jobs:
             dir_name=$(basename "$dir")
             process_directory "$dir" "$dir_name" ""
           done
+
+          # Add total count to README
+          echo "" >> README.md
+          echo "總共刷了 $total_count 題" >> README.md
 
       - name: Commit and push README update
         run: |
