@@ -1,10 +1,10 @@
 # Leetcode Summary
 
-- algo 刷了 6 題
-- udemy 刷了 13 題
-  - udemy/data-structure 刷了 1 題
-  - udemy/sorting 刷了 6 題
-- leetcode_uk 刷了 13 題
-- leetcode 刷了 75 題
+- algo solved 6 problems
+- udemy solved 13 problems
+  - udemy/data-structure solved 1 problems
+  - udemy/sorting solved 6 problems
+- leetcode_uk solved 13 problems
+- leetcode solved 75 problems
 
-總共刷了 114 題
+A total of 114 problems solved
