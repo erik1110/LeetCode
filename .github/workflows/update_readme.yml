@@ -32,7 +32,7 @@ jobs:
             local indent="$3"
             local count=$(find "$dir_path" -type f -name "*.py" | wc -l)
             if [ "$count" -gt 0 ]; then
-              echo "$indent- $dir_name 刷了 $count 題" >> README.md
+              echo "$indent- $dir_name solved $count problems" >> README.md
               total_count=$((total_count + count))
             fi
           }
@@ -61,7 +61,7 @@ jobs:
 
           # Add total count to README
           echo "" >> README.md
-          echo "總共刷了 $total_count 題" >> README.md
+          echo "A total of $total_count problems solved" >> README.md
 
       - name: Commit and push README update
         run: |
