@@ -30,7 +30,7 @@ You can just return left child.
         7 
  
 5. If you found the node has `left` and `right` children, then you can assume to find the min of the right subtree.
-For example, you won't know node 4 whether is has leaf or not, so you need to use recursive method.
+For example, you won't know 6 whether is has leaf or not, so you need to use recursive method.
 key = 3
     10
    / \
