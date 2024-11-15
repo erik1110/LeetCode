@@ -4,7 +4,7 @@
 - udemy solved 13 problems
   - udemy/data-structure solved 1 problems
   - udemy/sorting solved 6 problems
-- leetcode_uk solved 18 problems
+- leetcode_uk solved 19 problems
 - leetcode solved 75 problems
 
-A total of 119 problems solved
+A total of 120 problems solved
