@@ -21,6 +21,8 @@ jobs:
           # Initialize README content
           echo "# Leetcode Summary" > README.md
           echo "" >> README.md
+          echo "![LeetCode Stats](https://leetcard.jacoblin.cool/erik1110?theme=nord&ext=heatmap)" >> README.md
+          echo "" >> README.md
 
           # Initialize total count
           total_count=0
