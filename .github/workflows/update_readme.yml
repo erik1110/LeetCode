@@ -25,12 +25,21 @@ jobs:
           # Initialize total count
           total_count=0
 
+          # List of supported file extensions
+          file_extensions=("*.py" "*.java")
+
           # Function to count files in each directory
           count_files() {
             local dir_path="$1"
             local dir_name="$2"
             local indent="$3"
-            local count=$(find "$dir_path" -type f -name "*.py" | wc -l)
+            local count=0
+
+            # Count files matching the extensions
+            for ext in "${file_extensions[@]}"; do
+              count=$((count + $(find "$dir_path" -type f -name "$ext" | wc -l)))
+            done
+
             if [ "$count" -gt 0 ]; then
               echo "$indent- $dir_name solved $count problems" >> README.md
               total_count=$((total_count + count))
