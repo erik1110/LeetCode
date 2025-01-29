@@ -7,7 +7,7 @@
   - udemy/sorting solved 6 problems
 - leetcode solved 75 problems
 - leetcode_uk_python solved 37 problems
-- leetcode_uk_java solved 2 problems
+- leetcode_uk_java solved 3 problems
 - algo solved 6 problems
 
-A total of 140 problems solved
+A total of 141 problems solved
