@@ -6,8 +6,8 @@
   - udemy/data-structure solved 1 problems
   - udemy/sorting solved 6 problems
 - leetcode solved 79 problems
-- leetcode_uk_python solved 37 problems
-- leetcode_uk_java solved 11 problems
+- leetcode_uk_java solved 12 problems
 - algo solved 6 problems
+- leetcode_uk_python solved 37 problems
 
-A total of 153 problems solved
+A total of 154 problems solved
